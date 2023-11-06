@@ -7,4 +7,3 @@ for d in range(16):
     credit_card += str(rd.choice(digit))
 blurred_card = f"{'X' * 4} {'X' * 4} {'X' * 4} {credit_card[12:16]}"
 print(f"{blurred_card}\t{rd.choice(payment_network)}")
-# TESTING TESTING
