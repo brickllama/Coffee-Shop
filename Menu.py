@@ -1,4 +1,4 @@
-
+import datetime
 
 class Menu:
     hot_coffees = [
@@ -13,7 +13,7 @@ class Menu:
     teas = [
         ('Black Tea', 3.45),
         ('Earl Grey', 3.45),
-        ('Peppermint', 3.45),
+        ('Peppermint Tea', 3.45),
         ('Chai Tea', 3.45),
         ('Matcha Tea Latte', 5.25)
     ]
