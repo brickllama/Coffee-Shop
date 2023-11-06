@@ -1,3 +1,5 @@
+
+
 class Menu:
     hot_coffees = [
         ('Americano', 3.95),
@@ -32,6 +34,12 @@ class Menu:
         ('Everything Bagel', 2.65),
         ('Cream Cheese', 0.95),
     ]
+    merchandise = [
+        ('Sloth T-shirt', 15.00),
+        ('Reusable Cup', 5.00),
+        ('4pk Metal Straws', 4.25),
+        ('Sloth Plushie', 25.00)
+    ]
     shopping_cart = []
 
     def select_items(prompt, options):
@@ -49,18 +57,27 @@ class Menu:
             print('It has to be a number')
 
     def payments(shopping_cart):
-        tax = 1.125 #11.25%
-        pass
+        subtotal = 0
+        for i in shopping_cart:
+            subtotal += i[1]
+        tax = 0.1125 * subtotal  # 11.25%
+        grand_total = subtotal + tax
+        print(f"{'Subtotal':<20} ${subtotal:.2f}")
+        print(f"{'Tax':<20} ${tax:.2f}")
+        print(f"{'Total':<20} ${grand_total:.2f}")
 
     def menu():
         try:
-            answer = int(input('1) Drinks\n2) Food\n3) Merchandise\n4) Cart\nChoice: '))
+            answer = int(input('1) Drinks\n2) Food\n3)'
+                               ' Merchandise\n4) Cart\nChoice: '))
             if answer == 1:
                 try:
-                    answer = int(input('1) Hot Beverages\n2) Cold Beverages\nChoice: '))
+                    answer = int(input('1) Hot Beverages\n2)'
+                                       + ' Cold Beverages\nChoice: '))
                     if answer == 1:
                         print('Our hot beverages are:')
-                        if Menu.select_items('hot beverage', Menu.hot_coffees + Menu.teas) is False:
+                        if Menu.select_items('hot beverage', Menu.hot_coffees
+                                             + Menu.teas) is False:
                             return False
                     elif answer == 2:
                         print('Our cold beverages are:')
@@ -73,9 +90,10 @@ class Menu:
                 print('Our food items are:')
                 Menu.select_items('food item', Menu.foods)
             elif answer == 3:
-                Menu.seasonal_drinks()
+                Menu.select_items('merchandise', Menu.merchandise)
             elif answer == 4:
-                Menu.payments()
+                Menu.payments(Menu.shopping_cart)
+                exit()
             else:
                 print('You must enter a value between 1 and 4!')
         except ValueError:
