@@ -1,55 +1,60 @@
 class Menu:
     hot_coffees = [
         ('Americano', 3.95),
-        ('Brewed Coffee', 4.30),
-        ('Cappuccino', 5.50),
-        ('Espresso', 6.20),
-        ('Flat White', 3.40),
-        ('Latte', 6.10),
-        ('Macchiato', 6.40),
-        ('Mocha', 6.45)
+        ('Brewed Coffee', 2.95),
+        ('Cappuccino', 4.95),
+        ('Espresso', 2.75),
+        ('Latte', 3.45),
+        ('Macchiato', 2.85),
+        ('Mocha', 5.45)
     ]
     teas = [
-        ('Black Tea', 3.75),
-        ('Earl Grey', 4.00),
-        ('Peppermint', 4.25),
-        ('Chai Tea', 5.00)
+        ('Black Tea', 3.45),
+        ('Earl Grey', 3.45),
+        ('Peppermint', 3.45),
+        ('Chai Tea', 3.45),
+        ('Matcha Tea Latte', 5.25)
     ]
     cold_coffees = [
-        ('Cold Brew', 4.40),
-        ('Iced Americano', 4.05),
-        ('Iced Coffee', 3.85),
-        ('Iced Shaken Espresso', 6.30),
-        ('Iced Flat White', 4.00),
-        ('Iced Latte', 6.30),
-        ('Iced Macchiato', 6.50),
-        ('Iced Mocha', 6.65)
+        ('Cold Brew', 4.45),
+        ('Iced Americano', 3.95),
+        ('Iced Coffee', 3.95),
+        ('Iced Shaken Espresso', 4.45),
+        ('Iced Latte', 4.95),
+        ('Iced Macchiato', 5.65),
+        ('Iced Mocha', 5.65)
     ]
     seasonal_beverages = [
-        'Christmas Drink or something'
+         'Christmas Drink or something'
+    ]
+    foods = [
+        ('Bagel', 2.65),
+        ('Everything Bagel', 2.65),
+        ('Cream Cheese', 0.95),
     ]
     shopping_cart = []
 
     def select_items(prompt, options):
         for i, (name, price) in enumerate(options):
-            print(f'{i + 1}\t{name:<20} {price:.2f}')
-        print('Q for quit. ')
+            print(f'{i + 1}\t{name:<20} ${price:.2f}')
+        print('P to checkout. ')
         choice = input(f'Which {prompt} would you like? ')
         try:
             choice = int(choice) - 1
             Menu.shopping_cart.append(options[choice])
             print(Menu.shopping_cart)
         except ValueError:
-            if 'q' in choice.lower():
+            if 'p' in choice.lower():
                 return False
             print('It has to be a number')
 
-    def payments():
+    def payments(shopping_cart):
+        tax = 1.125 #11.25%
         pass
 
     def menu():
         try:
-            answer = int(input('1) Drinks\n2) Food\n3) Merchandise\n4) Quit\nChoice: '))
+            answer = int(input('1) Drinks\n2) Food\n3) Merchandise\n4) Cart\nChoice: '))
             if answer == 1:
                 try:
                     answer = int(input('1) Hot Beverages\n2) Cold Beverages\nChoice: '))
@@ -66,7 +71,7 @@ class Menu:
                     print('You must enter a number!')
             elif answer == 2:
                 print('Our food items are:')
-                Menu.select_items('food item', Menu.cold_coffees)
+                Menu.select_items('food item', Menu.foods)
             elif answer == 3:
                 Menu.seasonal_drinks()
             elif answer == 4:
