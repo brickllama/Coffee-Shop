@@ -1,6 +1,6 @@
 class Menu:
     blurred_card: str = ''
-    payment_network: list = ''
+    payment_network: str = ''
     date: str = ''
     time: str = ''
     business = "Nate's Coffee Shop"
