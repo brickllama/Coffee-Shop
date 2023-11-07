@@ -1,7 +1,10 @@
-import datetime
-
-
 class Menu:
+    blurred_card: str = ''
+    payment_network: list = ''
+    date: str = ''
+    time: str = ''
+    business = "Nate's Coffee Shop"
+
     hot_coffees = [
         ('Americano', 3.95),
         ('Brewed Coffee', 2.95),
@@ -59,15 +62,30 @@ class Menu:
             print('It has to be a number')
 
     def payments(shopping_cart):
-        subtotal = 0
-        for i in shopping_cart:
-            subtotal += i[1]
-        tax = 0.1125 * subtotal  # 11.25%
-        grand_total = subtotal + tax
-        print(f"{'Subtotal':<20} ${subtotal:.2f}")
-        print(f"{'Tax':<20} ${tax:.2f}")
-        print(f"{'Total':<20} ${grand_total:.2f}")
-        exit()
+        choice = int(input('Are you ready to checkout?\n'
+                           + '1) Yes\n2) No\nChoice: '))
+        try:
+            if choice == 1:
+                if len(shopping_cart) >= 1:
+                    subtotal = 0
+                    for i in shopping_cart:
+                        subtotal += i[1]
+                    tax = 0.1125 * subtotal  # 11.25%
+                    grand_total = subtotal + tax
+                    print('\n', Menu.business.center(31) + '\n')
+                    for name, price in shopping_cart:
+                        print(f'{name:<25} ${price:.2f}')
+                    print(f"{'**'*16}\n{'Subtotal':<25} ${subtotal:.2f}")
+                    print(f"{'Tax':<25} ${tax:.2f}")
+                    print(f"{'Total':<25} ${grand_total:.2f}\n{'**'*16}")
+                    print(f"{Menu.blurred_card:<20} {Menu.payment_network}")
+                    print(f"APPROVED - PURCHASE\nAMOUNT: ${grand_total:.2f}")
+                    print(f"{Menu.date:<26} {Menu.time}\n{'**'*16}")
+                    exit()
+                else:
+                    exit()
+        except ValueError:
+            print('It must be')
 
     def menu():
         try:
