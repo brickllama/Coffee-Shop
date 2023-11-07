@@ -55,7 +55,8 @@ class Menu:
             choice = int(choice) - 1
             if choice + 1 <= len(options):
                 Menu.shopping_cart.append(options[choice])
-                print(Menu.shopping_cart)
+                for i in Menu.shopping_cart:
+                    print(f"{i[0]:<28} ${i[1]:.2f}")
         except ValueError:
             if 'p' in choice.lower():
                 return False
